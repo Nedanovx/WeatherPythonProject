@@ -2,6 +2,7 @@
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
+import statistics
 API_KEY = '***REMOVED***'
 URL = 'http://api.openweathermap.org/data/2.5/weather?'
 
@@ -42,4 +43,5 @@ with gzip.open("city.list.json.gz", "rt", encoding="utf-8") as cities:
     city, temp = next(iter(sorted_cities.items()))
     print(f"Coldest city: {city}")
     print(f"Temperature: {temp}°C")
+    print(f"Average temperatures: {statistics.mean(sorted_cities.values()):.2f}°C")
 
