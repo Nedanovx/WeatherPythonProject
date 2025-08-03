@@ -45,3 +45,37 @@ with gzip.open("city.list.json.gz", "rt", encoding="utf-8") as cities:
     print(f"Temperature: {temp}°C")
     print(f"Average temperatures: {statistics.mean(sorted_cities.values()):.2f}°C")
 
+user_input = input("Which city would you like to see? ").strip().lower()
+
+isFound = False
+
+for city in  all_cities:
+    if city['name'].lower() == user_input:
+        city_id = city['id']
+        city_name = city['name']
+        isFound = True
+        break
+if isFound:
+    params = {
+        'id': city_id,
+        'appid': API_KEY,
+        'units': 'metric',
+        'lang': 'en'
+    }
+    try:
+        response = requests.get(URL, params=params)
+        response.raise_for_status()
+        data = response.json()
+
+        description = data['weather'][0]['description']
+        temp = data['main']['temp']
+        humidity = data['main']['humidity']
+
+        print(f"city: {city_name}")
+        print(f"The weather is: {description}")
+        print(f"The temperature is: {temp}°C")
+        print(f"Humidity is: {humidity}%")
+    except requests.RequestException as e:
+        print(e)
+else:
+    print(f'city: {user_input} not found')
