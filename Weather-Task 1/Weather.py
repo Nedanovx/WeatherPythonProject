@@ -1,9 +1,15 @@
+import load_dotenv
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
 import statistics
-API_KEY = '***REMOVED***'
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+KEY = os.getenv('API_KEY')
 URL = 'http://api.openweathermap.org/data/2.5/weather?'
 
 current_five_cities = {}
@@ -18,7 +24,7 @@ with gzip.open("city.list.json.gz", "rt", encoding="utf-8") as cities:
 
         params = {
             'id': city_id,
-            'appid': API_KEY,
+            'appid': KEY,
             'units': 'metric',
             'lang': 'en'
         }
@@ -58,7 +64,7 @@ for city in  all_cities:
 if isFound:
     params = {
         'id': city_id,
-        'appid': API_KEY,
+        'appid': KEY,
         'units': 'metric',
         'lang': 'en'
     }
