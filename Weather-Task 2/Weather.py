@@ -1,3 +1,4 @@
+import statistics
 from tkinter import messagebox
 ***REMOVED***
 ***REMOVED***
@@ -81,3 +82,13 @@ def search_city(city_name):
     else:
         messagebox.showinfo(f"City {city_name} not found", "City not found")
     return None
+
+def get_stats():
+    cities = get_five_cities()
+    sorted_cities = dict(sorted(cities.items(), key=lambda x: x[1]["temp"]))
+    coldest_city, data = next(iter(sorted_cities.items()))
+    coldest_temp = data["temp"]
+
+    avg_temp = statistics.mean(data["temp"] for data in sorted_cities.values())
+
+    return coldest_city, coldest_temp, avg_temp
