@@ -1,5 +1,6 @@
+import statistics
 import tkinter as tk
-from Weather import get_five_cities, search_city
+from Weather import get_five_cities, search_city, get_stats
 
 root = tk.Tk()
 root.title("Weather Task 2")
@@ -16,6 +17,9 @@ search_button.pack(side="left")
 
 card_frame = tk.Frame(root, bg="#F5DEB3")
 card_frame.pack(expand=True)
+
+stats_label = tk.Label(root, text="", font=("Arial", 12), bg="#F5DEB3")
+stats_label.pack(pady=10)
 
 def on_search():
     city_data = search_city(search_entry.get())
@@ -50,5 +54,15 @@ def show_random_cities():
         tk.Label(card, text=f"Temperature: {temp}°C", bg="#f0f0f0").pack(anchor="w")
         tk.Label(card, text=f"Humidity: {humidity}%", bg="#f0f0f0").pack(anchor="w")
 
+def show_stats():
+    coldest_city, coldest_temp, avg_temp = get_stats()
+    stats_text = (
+        f"Coldest city: {coldest_city}\n"
+        f"Coldest temperature: {coldest_temp}°C\n"
+        f"Average temperature: {avg_temp:.2f}°C"
+    )
+    stats_label.config(text=stats_text)
+
 show_random_cities()
+show_stats()
 root.mainloop()
