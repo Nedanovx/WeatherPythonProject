@@ -12,14 +12,16 @@ load_dotenv()
 KEY = os.getenv('API_KEY')
 URL = 'http://api.openweathermap.org/data/2.5/weather?'
 
-
+current_five_cities = {}
 def get_cities():
     with gzip.open("city.list.json.gz", "rt", encoding="utf-8") as cities:
         all_cities = json.load(cities)
         return all_cities
 
-current_five_cities = {}
+
 def get_five_cities():
+    global current_five_cities
+    current_five_cities = {}
     cities = get_cities()
     random_cities = random.sample(cities, 5)
 
@@ -82,11 +84,9 @@ def search_city(city_name):
         messagebox.showinfo(f"City {city_name} not found", "City not found")
     return None
 
-def get_stats(cities):
-    sorted_cities = dict(sorted(cities.items(), key=lambda x: x[1]["temp"]))
+def get_stats():
+    sorted_cities = dict(sorted(current_five_cities.items(), key=lambda x: x[1]["temp"]))
     coldest_city, data = next(iter(sorted_cities.items()))
     coldest_temp = data["temp"]
-
-    avg_temp = statistics.mean(data["temp"] for data in sorted_cities.values())
-
+    avg_temp = statistics.mean(d["temp"] for d in sorted_cities.values())
     return coldest_city, coldest_temp, avg_temp

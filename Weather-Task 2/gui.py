@@ -20,7 +20,7 @@ card_frame.pack(expand=True)
 
 stats_label = tk.Label(root, text="", font=("Arial", 12), bg="#F5DEB3")
 stats_label.pack(pady=10)
-
+current_five_cities = {}
 def on_search():
     city_data = search_city(search_entry.get())
     if city_data:
@@ -36,6 +36,7 @@ def on_search():
         tk.Label(card, text=f"Humidity: {city_data['humidity']}%", bg="#f0f0f0").pack(anchor="w")
 
 def show_random_cities():
+
     for widget in card_frame.winfo_children():
         widget.destroy()
 
@@ -55,7 +56,7 @@ def show_random_cities():
         tk.Label(card, text=f"Humidity: {humidity}%", bg="#f0f0f0").pack(anchor="w")
 
 def show_stats():
-    coldest_city, coldest_temp, avg_temp = get_stats(get_five_cities())
+    coldest_city, coldest_temp, avg_temp = get_stats()
     stats_text = (
         f"Coldest city: {coldest_city}\n"
         f"Coldest temperature: {coldest_temp}°C\n"
