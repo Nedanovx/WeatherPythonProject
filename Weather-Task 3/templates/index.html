@@ -10,7 +10,7 @@
 <body style="background-color: lightblue;">
    <div class="d-flex flex-wrap justify-content-center">
     {% for name, data in cities.items() %}
-    <div class="m-3" style="flex: 0 1 300px; max-width: 300px;">
+    <div class="m-3" style="flex: 0 1 350px; max-width: 350px;">
         <div class="card shadow-sm" style="border: 1px solid black; padding: 15px;">
             <h3 class="card-title text-center" style="text-decoration: underline;">{{ name }}</h3>
             <p class="card-text"><span>The weather is:</span> {{ data.desc.capitalize() }}</p>
@@ -20,6 +20,10 @@
     </div>
     {% endfor %}
 </div>
-
+<footer style="position: absolute; bottom: 0; width: 100%; height: 50px;">
+  <div  style="text-align: center;">
+    <p>© 2025 Weather App.</p>
+  </div>
+</footer>
 </body>
 </html>
