@@ -1,0 +1,6 @@
+.card-text{
+padding-left: 20px;
+}
+.card-text > span{
+font-weight: bold;
+}
