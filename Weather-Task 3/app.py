@@ -1,12 +1,13 @@
 from flask import Flask, render_template,request
-from Weather import get_five_cities,search_city
+from Weather import get_five_cities,search_city, get_stats
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     cities = get_five_cities()
-    return render_template("index.html", cities=cities)
+    stats = get_stats()
+    return render_template("index.html", cities=cities ,stats=stats)
 
 @app.route("/search")
 def search():
