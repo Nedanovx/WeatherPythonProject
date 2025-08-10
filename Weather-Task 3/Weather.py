@@ -46,3 +46,36 @@ def get_five_cities():
             print(e)
 
     return current_five_cities
+
+def search_city(city_name):
+    isFound = False
+    searched_city= get_cities()
+    for city in searched_city:
+        if city['name'].lower() == city_name.lower():
+            city_id = city['id']
+            name = city['name']
+            isFound = True
+            break
+    if isFound:
+        params = {
+            'id': city_id,
+            'appid': KEY,
+            'units': 'metric',
+            'lang': 'en'
+        }
+        try:
+            response = requests.get(URL, params=params)
+            response.raise_for_status()
+            data = response.json()
+
+            return  {
+                    "name": name,
+                    "desc": data["weather"][0]["description"],
+                    "temp": data["main"]["temp"],
+                    "humidity": data["main"]["humidity"]
+            }
+        except requests.RequestException as e:
+            print(e)
+    else:
+        print(f"City {city_name} not found", "City not found")
+    return None
