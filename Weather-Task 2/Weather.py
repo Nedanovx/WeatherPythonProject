@@ -18,9 +18,8 @@ def get_cities():
         all_cities = json.load(cities)
         return all_cities
 
-
+current_five_cities = {}
 def get_five_cities():
-    current_five_cities = {}
     cities = get_cities()
     random_cities = random.sample(cities, 5)
 
@@ -83,8 +82,7 @@ def search_city(city_name):
         messagebox.showinfo(f"City {city_name} not found", "City not found")
     return None
 
-def get_stats():
-    cities = get_five_cities()
+def get_stats(cities):
     sorted_cities = dict(sorted(cities.items(), key=lambda x: x[1]["temp"]))
     coldest_city, data = next(iter(sorted_cities.items()))
     coldest_temp = data["temp"]

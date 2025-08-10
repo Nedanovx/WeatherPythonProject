@@ -55,7 +55,7 @@ def show_random_cities():
         tk.Label(card, text=f"Humidity: {humidity}%", bg="#f0f0f0").pack(anchor="w")
 
 def show_stats():
-    coldest_city, coldest_temp, avg_temp = get_stats()
+    coldest_city, coldest_temp, avg_temp = get_stats(get_five_cities())
     stats_text = (
         f"Coldest city: {coldest_city}\n"
         f"Coldest temperature: {coldest_temp}°C\n"
