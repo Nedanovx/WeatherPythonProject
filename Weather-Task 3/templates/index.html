@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body style="background-color: lightblue;">
-   <div class="d-flex flex-wrap justify-content-center">
+<body>
+
+<div style="justify-items: center; padding-top: 20px; padding-bottom: 20px;">
+    <form action="/search" method="get" class="d-flex mb-4" style="width: 25%;">
+            <input type="text" name="city" class="form-control" placeholder="Search for a city">
+            <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Search</button>
+    </form>
+</div>
+
+<div class="d-flex flex-wrap justify-content-center">
     {% for name, data in cities.items() %}
     <div class="m-3" style="flex-wrap: wrap;">
         <div class="card shadow-sm" style="border: 1px solid black; padding: 15px;">
-            <h3 class="card-title text-center" style="text-decoration: underline;">{{ name }}</h3>
+            <h3 class="card-title">{{ name }}</h3>
             <p class="card-text"><span>The weather is:</span> {{ data.desc.capitalize() }}</p>
             <p class="card-text"><span>Temperature:</span> {{ data.temp }}°C</p>
             <p class="card-text"><span>Humidity:</span> {{ data.humidity }}%</p>
@@ -20,8 +28,13 @@
     </div>
     {% endfor %}
 </div>
-
-
+<div class="d-flex flex-wrap justify-content-center">
+    <div class="m-3" style="flex-wrap: wrap;">
+        <h3 class="card-title"><span>Coldest city: {{stats[0]}}</span></h3>
+        <p class="card-text"><span>Temperature:</span> {{stats[1] }}°C</p>
+        <p class="card-text"><span>Average temperature:</span> {{ "%.2f" | format(stats[2]) }}°C</p>
+    </div>
+</div>
 <footer style="position: absolute; bottom: 0; width: 100%; height: 50px;">
   <div  style="text-align: center;">
     <p>© 2025 Weather App.</p>
