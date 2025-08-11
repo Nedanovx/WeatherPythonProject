@@ -1,8 +1,8 @@
 import statistics
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+import requests
+import json
+import gzip
+import random
 from dotenv import load_dotenv
 import os
 
@@ -24,7 +24,7 @@ def get_five_cities():
     cities = get_cities()
     random_cities = random.sample(cities, 5)
 
-***REMOVED***
+    for city in random_cities:
         city_id = city['id']
         city_name = city['name']
         params = {

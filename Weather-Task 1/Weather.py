@@ -1,8 +1,8 @@
 import load_dotenv
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+import requests
+import json
+import gzip
+import random
 import statistics
 from dotenv import load_dotenv
 import os
@@ -16,9 +16,9 @@ current_five_cities = {}
 with gzip.open("city.list.json.gz", "rt", encoding="utf-8") as cities:
     all_cities = json.load(cities)
 
-***REMOVED***
+    random_cities = random.sample(all_cities, 5)
 
-***REMOVED***
+    for city in random_cities:
         city_id = city['id']
         city_name = city['name']
 
