@@ -10,7 +10,7 @@
 <body>
 
 <div style="justify-items: center; padding-top: 20px; padding-bottom: 20px;">
-    <form action="/search" method="get" class="d-flex mb-4" style="width: 25%;">
+    <form action="{% url 'search_city_view' %}" method="get" class="d-flex mb-4" style="width: 25%;">
             <input type="text" name="city" class="form-control" placeholder="Search for a city">
             <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Search</button>
     </form>
