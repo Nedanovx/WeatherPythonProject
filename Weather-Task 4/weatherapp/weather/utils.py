@@ -78,9 +78,8 @@ def search_city(city_name):
                     "humidity": data["main"]["humidity"]
             }
         except requests.RequestException as e:
-            print(e)
-    else:
-        print(f"City {city_name} not found", "City not found")
+            return None
+
     return None
 
 def get_stats(cities):
